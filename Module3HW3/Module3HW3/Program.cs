@@ -5,6 +5,18 @@ namespace Module3HW3
 {
     public class Program
     {
+        public static void Main(string[] args)
+        {
+            var p = new Program();
+            var c1 = new Class1();
+            var c2 = new Class2();
+            c1.RefShow += p.Show;
+            Func<int, int, int> refPow = c1.Pow;
+            var rezCalc = c2.Calc(refPow, 9, 5);
+            var flag = rezCalc.Invoke(4);
+            c1.RefShow.Invoke(flag);
+        }
+
         public void Show(bool e)
         {
             if (e == false)
@@ -15,15 +27,6 @@ namespace Module3HW3
             {
                 Console.WriteLine("True");
             }
-        }
-
-        public static void Main(string[] args)
-        {
-            var q = new Class2();
-            var r = new Class1();
-            var p = new Program();
-            q.Calc(r.Pow, 9, 7);
-            p.Show(q.Result(8));
         }
     }
 }
